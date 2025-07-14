@@ -26,6 +26,30 @@ def add_student():
     
     return redirect(url_for('home'))
 
+
+@app.route('/delete/<int:id>')
+def delete_student(id):
+    student = Student.query.get_or_404(id)
+    db.session.delete(student)
+    db.session.commit()
+    return redirect(url_for('home'))
+
+
+@app.route('/edit/<int:id>')
+def edit_student(id):
+    student = Student.query.get_or_404(id)
+    return render_template('edit.html', student=student)
+
+@app.route('/update/<int:id>', methods=['POST'])
+def update_student(id):
+    student = Student.query.get_or_404(id)
+    student.fullname = request.form['fullname']
+    student.email = request.form['email']
+    student.course = request.form['course']
+    db.session.commit()
+    return redirect(url_for('home'))
+
+
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
