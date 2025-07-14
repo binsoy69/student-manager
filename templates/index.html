@@ -4,6 +4,22 @@
     <title>Student Manager</title>
 </head>
 <body>
-    <h1>📚 Welcome to Student Manager</h1>
+    <h1>📚 Student Manager</h1>
+
+    <form method="POST" action="/add">
+        <input type="text" name="fullname" placeholder="Full Name" required><br>
+        <input type="email" name="email" placeholder="Email" required><br>
+        <input type="text" name="course" placeholder="Course" required><br>
+        <button type="submit">Add Student</button>
+    </form>
+
+    <hr>
+
+    <h2>📋 Student Records</h2>
+    <ul>
+        {% for student in students %}
+        <li>{{ student.fullname }} | {{ student.email }} | {{ student.course }}</li>
+        {% endfor %}
+    </ul>
 </body>
 </html>
