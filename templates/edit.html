@@ -1,19 +1,23 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Edit Student</title>
-</head>
-<body>
-    <h1>✏️ Edit Student</h1>
+{% extends "base.html" %}
+{% block title %}Edit Student{% endblock %}
+{% block content %}
 
-    <form method="POST" action="{{ url_for('update_student', id=student.id) }}">
-        <input type="text" name="fullname" value="{{ student.fullname }}" required><br>
-        <input type="email" name="email" value="{{ student.email }}" required><br>
-        <input type="text" name="course" value="{{ student.course }}" required><br>
-        <button type="submit">Update</button>
-    </form>
+<h2 class="mb-4">✏️ Edit Student</h2>
 
-    <br>
-    <a href="{{ url_for('home') }}">← Back to list</a>
-</body>
-</html>
+<form method="POST" action="{{ url_for('update_student', id=student.id) }}" class="row g-3 mb-3">
+    <div class="col-md-4">
+        <input type="text" name="fullname" value="{{ student.fullname }}" class="form-control" required>
+    </div>
+    <div class="col-md-4">
+        <input type="email" name="email" value="{{ student.email }}" class="form-control" required>
+    </div>
+    <div class="col-md-4">
+        <input type="text" name="course" value="{{ student.course }}" class="form-control" required>
+    </div>
+    <div class="col-12">
+        <button type="submit" class="btn btn-success">💾 Update</button>
+        <a href="{{ url_for('home') }}" class="btn btn-secondary">← Cancel</a>
+    </div>
+</form>
+
+{% endblock %}
